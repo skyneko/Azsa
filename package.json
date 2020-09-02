@@ -1,0 +1,44 @@
+{
+  "name": "azsa",
+  "version": "0.0.1-dev",
+  "description": "New Unoffical Facebook API",
+  "main": "build/index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "fs": "^0.0.1-security",
+    "joi": "^17.2.1",
+    "mqtt": "^4.2.1",
+    "qs": "^6.9.4",
+    "request": "^2.88.2",
+    "websocket": "^1.0.32",
+    "websocket-stream": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/joi": "^14.3.4",
+    "@types/mqtt": "^2.5.0",
+    "@types/qs": "^6.9.4",
+    "@types/request": "^2.48.5",
+    "@types/websocket": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://banhgaonya@dev.azure.com/banhgaonya/Azsa/_git/Azsa"
+  },
+  "keywords": [
+    "facebook",
+    "api",
+    "messenger",
+    "api",
+    "new",
+    "messenger",
+    "api",
+    "messenger",
+    "facebook",
+    "facebook-chat-api"
+  ],
+  "author": "yui421",
+  "license": "ISC"
+}
