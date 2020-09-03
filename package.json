@@ -11,15 +11,14 @@
     "qs": "^6.9.4",
     "request": "^2.88.2",
     "websocket": "^1.0.32",
-    "websocket-stream": "^5.5.2"
-  },
-  "devDependencies": {
+    "websocket-stream": "^5.5.2",
     "@types/joi": "^14.3.4",
     "@types/mqtt": "^2.5.0",
     "@types/qs": "^6.9.4",
     "@types/request": "^2.48.5",
     "@types/websocket": "^1.0.1"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
