@@ -1,8 +1,5 @@
-
-/** MAIN */
-export interface Azsa {
-	listen: (callback: IMsgCallbackEvent) => void,
-}
+import listen from "azsa/src/listen"
+import { func } from "joi"
 
 /** MESSAGE & EVENTS */
 type IMessageType = 'text' | 'attachment' | 'image' | 'sticker' | 'typing' | 'event'
@@ -46,6 +43,7 @@ export interface IMqttConnectOptions {
 	cookie: string,
 	selfFacebookID: number
 } 
+type UserConnectOptions = IMqttConnectOptions 
 
 /** LOG */
 export type ILogType = 'warn' | 'info' | 'error' | 'receive'
@@ -62,3 +60,7 @@ export interface IFacebookState {
 	fbDtsg: string,
 	irisSeqID: string,
 }
+
+
+/** MAIN */
+export declare function listen(UserOptions: UserConnectOptions, Callback: IMsgCallbackEvent): void

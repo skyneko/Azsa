@@ -1,5 +1,3 @@
-import * as types from './types'
+import listen from './listen'
 
-console.log('moshi moshi')
-
-export default null
+export { listen }

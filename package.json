@@ -1,8 +1,10 @@
 {
   "name": "azsa",
-  "version": "0.0.1-dev",
+  "version": "0.0.2-alpha",
   "description": "New Unoffical Facebook API",
   "main": "build/index.js",
+  "types": "src/types.d.ts",
+  "prepublish": "tsc",
   "dependencies": {
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
