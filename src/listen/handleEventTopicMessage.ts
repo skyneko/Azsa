@@ -1,20 +1,14 @@
-import { IMsgCallbackEvent } from '../types'
-// const createChatServices = require('../sendMessage')
-// const createSettingServies = require('../MessengerSetting')
-// const createThreadSettingServies = require('../ChatThreadSetting')
+import { IMsgCallbackEvent, IMqttConnectOptions } from '@/types'
 
 import onNewMessage from './events/NewMessage'
 import onClientPayload from './events/ClientPayload'
+import createMessageServices from '../api/messenger'
+import { MqttClient } from 'mqtt'
 
-export default function handleEventTopicMessage(event: string, eventData: any, fbDtsg: string, callbackFunc: IMsgCallbackEvent) {
-  // const chatServies = createChatServices(fbDtsg)
-  // const settingServices = createSettingServies(fbDtsg)
-  // const threadSettingServices = createThreadSettingServies(fbDtsg)
-  
-  // const callback = (data) => callbackFunc(data, chatServies, settingServices, threadSettingServices)
+export default function handleEventTopicMessage(event: string, eventData: any, client: MqttClient, options: IMqttConnectOptions, callbackFunc: IMsgCallbackEvent) {
 
   // @ts-ignore
-  const callback = (data: any) => callbackFunc(data)
+  const callback = (data: any) => callbackFunc(data, createMessageServices(client, options))
 
   /**
    * Event này sẽ bao gồm các tin nhắn mới (text, hình ảnh, âm thanh, ...)

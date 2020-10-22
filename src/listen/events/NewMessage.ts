@@ -14,7 +14,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       log('receive', `${message.messageMetadata.actorFbId} > sticker.`)
     }
 
-    let threadId = (message.messageMetadata.threadKey.threadFbId) ? message.messageMetadata.threadKey.threadFbId : message.messageMetadata.threadKey.otherUserFbId
+    let threadID = (message.messageMetadata.threadKey.threadFbId) ? message.messageMetadata.threadKey.threadFbId : message.messageMetadata.threadKey.otherUserFbId
 
     callback({
       type: 'sticker',
@@ -28,7 +28,7 @@ export default async function onNewMessage(message: any, callback: Function) {
         height: message.attachments[0].mercury.sticker_attachment.height,
       },
       stickerId: parseInt(message.stickerId, 10),
-      threadId: parseInt(threadId, 10),
+      threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderId: message.messageMetadata.actorFbId,
       messageId,
@@ -46,7 +46,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       log('receive', `${message.messageMetadata.actorFbId} > attachment.`)
     }
 
-    let threadId = (message.messageMetadata.threadKey.threadFbId) ? message.messageMetadata.threadKey.threadFbId : message.messageMetadata.threadKey.otherUserFbId
+    let threadID = (message.messageMetadata.threadKey.threadFbId) ? message.messageMetadata.threadKey.threadFbId : message.messageMetadata.threadKey.otherUserFbId
 
     let attachments = message.attachments.map((attachment: any) => {
       if (attachment.mimeType === 'image/jpeg' || attachment.mimeType === 'image/png') {
@@ -76,7 +76,7 @@ export default async function onNewMessage(message: any, callback: Function) {
     callback({
       type: 'attachments',
       attachments,
-      threadId: parseInt(threadId, 10),
+      threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderId: message.messageMetadata.actorFbId,
       messageId,
@@ -95,11 +95,11 @@ export default async function onNewMessage(message: any, callback: Function) {
       log('receive', `${message.messageMetadata.actorFbId} > ${message.body}`)
     }
 
-    let threadId = (message.messageMetadata.threadKey.threadFbId) ? message.messageMetadata.threadKey.threadFbId : message.messageMetadata.threadKey.otherUserFbId
+    let threadID = (message.messageMetadata.threadKey.threadFbId) ? message.messageMetadata.threadKey.threadFbId : message.messageMetadata.threadKey.otherUserFbId
 
     callback({
       type: 'text',
-      threadId: parseInt(threadId, 10),
+      threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderId: message.messageMetadata.actorFbId,
       text: message.body,

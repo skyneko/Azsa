@@ -1,5 +1,6 @@
 import listen from "azsa/src/listen"
-import { func } from "joi"
+
+export type IfbDtsg = string
 
 /** MESSAGE & EVENTS */
 type IMessageType = 'text' | 'attachment' | 'image' | 'sticker' | 'typing' | 'event'
@@ -30,9 +31,9 @@ interface ISendImageApiResponse extends IApiResponse {
 }
 
 interface IApi {
-	sendText: (text: string, threadID: number) => Promise<ISendTextApiResponse>
-	sendSticker: (stickerID: number, threadID: number) => Promise<ISendStickerApiResponse>
-	sendImage: (image: string | string[], threadID: number) => Promise<ISendImageApiResponse>
+	sendText: (text: string, threadID: number) => void
+	sendSticker: (stickerID: number, threadID: number) => void
+	sendImage: (image: string | string[], threadID: number) => void
 }
 
 export type IMsgCallbackEvent = (message: ITextMessage, Api: IApi) => void

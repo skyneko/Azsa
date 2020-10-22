@@ -1,5 +1,3 @@
-import { func } from "joi"
-
 export function getGUID() {
   let sectionLength = Date.now()
   let id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {

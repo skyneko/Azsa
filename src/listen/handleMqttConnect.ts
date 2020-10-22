@@ -1,6 +1,6 @@
 import { MqttClient as IMqttClient } from 'mqtt'
 import handleEventTopicMessage from './handleEventTopicMessage'
-import { IMsgCallbackEvent } from '../types'
+import { IMsgCallbackEvent, IMqttConnectOptions } from '../types'
 import log from '../commons/log'
 
 export function clientOnConnect(client: IMqttClient, selfFacebookID: number, irisSeqID: string) {
@@ -23,12 +23,12 @@ export function clientOnConnect(client: IMqttClient, selfFacebookID: number, iri
     })
   }
 }
-export function clientOnMessage(callbackFunc: IMsgCallbackEvent, fbDtsg: string) {
+export function clientOnMessage(client: IMqttClient, options: IMqttConnectOptions, callbackFunc: IMsgCallbackEvent) {
   return function (event: string, message: any) {
     const eventData = JSON.parse(message.toString())
     if (eventData.errorCode === 'ERROR_QUEUE_OVERFLOW') return log('error', 'ERROR_QUEUE_OVERFLOW')
 
-    handleEventTopicMessage(event, eventData, fbDtsg, callbackFunc)    
+    handleEventTopicMessage(event, eventData, client, options, callbackFunc)    
   }
 }
 export function clientOnError(error: Error) {

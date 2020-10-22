@@ -1,24 +1,24 @@
 {
   "name": "azsa",
-  "version": "0.0.5-alpha",
+  "version": "0.0.5b",
   "description": "New Unoffical Facebook API",
   "main": "build/index.js",
   "types": "src/types.d.ts",
   "prepublish": "tsc",
   "dependencies": {
+    "@types/joi": "^14.3.4",
+    "@types/mqtt": "^2.5.0",
+    "@types/qs": "^6.9.4",
+    "@types/request": "^2.48.5",
+    "@types/websocket": "^1.0.1",
     "dotenv": "^8.2.0",
-    "fs": "^0.0.1-security",
+    "fs": "0.0.1-security",
     "joi": "^17.2.1",
     "mqtt": "^4.2.1",
     "qs": "^6.9.4",
     "request": "^2.88.2",
     "websocket": "^1.0.32",
-    "websocket-stream": "^5.5.2",
-    "@types/joi": "^14.3.4",
-    "@types/mqtt": "^2.5.0",
-    "@types/qs": "^6.9.4",
-    "@types/request": "^2.48.5",
-    "@types/websocket": "^1.0.1"
+    "websocket-stream": "^5.5.2"
   },
   "devDependencies": {},
   "scripts": {

@@ -67,7 +67,7 @@ export default function connect(options: IMqttConnectOptions, callback: IMsgCall
     const { irisSeqID, fbDtsg } = fdata
     client.on('error', clientOnError)
     client.on('connect', clientOnConnect(client, options.selfFacebookID, irisSeqID))
-    client.on('message', clientOnMessage(callback, fbDtsg))
+    client.on('message', clientOnMessage(client, options, callback))
   }
   setTimeout(() => {
     log('info', '[INFO] ', color.Reset, 'Listen ...')
