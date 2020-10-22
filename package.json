@@ -1,6 +1,6 @@
 {
   "name": "azsa",
-  "version": "0.0.4-alpha",
+  "version": "0.0.5-alpha",
   "description": "New Unoffical Facebook API",
   "main": "build/index.js",
   "types": "src/types.d.ts",
