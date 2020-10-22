@@ -6,7 +6,7 @@ USER_AGENT=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firef
 COOKIE=
 SELF_FACEBOOK_ID=
 ```
-index.js
+index.ts
 ```typescript
 import { listen, UserConnectOptions } from 'azsa'
 import config from './config'
