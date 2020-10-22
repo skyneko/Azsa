@@ -1,4 +1,4 @@
-import { IMsgCallbackEvent, IMqttConnectOptions } from '@/types'
+import { IMsgCallbackEvent, IMqttConnectOptions } from '../types'
 
 import onNewMessage from './events/NewMessage'
 import onClientPayload from './events/ClientPayload'

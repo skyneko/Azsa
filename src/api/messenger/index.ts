@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import { MqttClient } from 'mqtt'
-import { IMqttConnectOptions } from '@/types'
+import { IMqttConnectOptions } from '../../types'
 
 const createMessageServices = (mqttClient: MqttClient, options: IMqttConnectOptions) => {
   let Api = {}

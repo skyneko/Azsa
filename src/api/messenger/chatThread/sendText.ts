@@ -1,6 +1,6 @@
 import { MqttClient } from 'mqtt'
 import { getMessageID } from './helper'
-import { IMqttConnectOptions } from '@/types'
+import { IMqttConnectOptions } from '../../../types'
 
 export = (client: MqttClient, options: IMqttConnectOptions) => function sendText(text: string, threadID: number) {
   const message = {
