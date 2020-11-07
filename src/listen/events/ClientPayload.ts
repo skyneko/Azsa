@@ -11,7 +11,7 @@ export default function onClientPayload(message: any, callback: Function) {
       callback({
         type: 'reaction',
         threadId,
-        targetMessageId: reactionData.messageId,
+        targetMessageID: reactionData.messageID,
         targetUserId: reactionData.userId,
         action: reactionData.action,
         reaction: reactionData.reaction,

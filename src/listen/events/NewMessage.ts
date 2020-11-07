@@ -1,13 +1,13 @@
 import log from '../../commons/log'
 import { isLogMessage } from '../../const'
 
-let lastMessageId = new Array(100).fill('')
+let lastMessageID = new Array(100).fill('')
 
 export default async function onNewMessage(message: any, callback: Function) {
-  let { messageId } = message.messageMetadata
+  let messageID = message.messageMetadata.messageId
 
   // sticker 
-  if (message.stickerId !== undefined && lastMessageId.includes(messageId) === false) {
+  if (message.stickerId !== undefined && lastMessageID.includes(messageID) === false) {
 
     /** log message */
     if (isLogMessage) {
@@ -31,15 +31,15 @@ export default async function onNewMessage(message: any, callback: Function) {
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderId: message.messageMetadata.actorFbId,
-      messageId,
+      messageID,
     })
 
-    lastMessageId.push(messageId)
-    lastMessageId.shift()
+    lastMessageID.push(messageID)
+    lastMessageID.shift()
   }
 
   // attachments
-  if (message.attachments.length > 0 && lastMessageId.includes(messageId) === false && message.stickerId === undefined) {
+  if (message.attachments.length > 0 && lastMessageID.includes(messageID) === false && message.stickerId === undefined) {
 
     /** log message */
     if (isLogMessage) {
@@ -79,16 +79,16 @@ export default async function onNewMessage(message: any, callback: Function) {
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderId: message.messageMetadata.actorFbId,
-      messageId,
+      messageID,
     })
 
-    lastMessageId.push(messageId)
-    lastMessageId.shift()
+    lastMessageID.push(messageID)
+    lastMessageID.shift()
 
   }
 
   // text msg 
-  if (message.body !== undefined && lastMessageId.includes(messageId) === false) {
+  if (message.body !== undefined && lastMessageID.includes(messageID) === false) {
 
     /** log message */
     if (isLogMessage) {
@@ -103,10 +103,10 @@ export default async function onNewMessage(message: any, callback: Function) {
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderId: message.messageMetadata.actorFbId,
       text: message.body,
-      messageId,
+      messageID,
     })
 
-    lastMessageId.push(messageId)
-    lastMessageId.shift()
+    lastMessageID.push(messageID)
+    lastMessageID.shift()
   }
 }
