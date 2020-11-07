@@ -30,7 +30,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       stickerID: parseInt(message.stickerId, 10),
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
-      senderID: message.messageMetadata.actorFbId,
+      senderID: parseInt(message.messageMetadata.actorFbId, 10),
       messageID,
     })
 
@@ -78,7 +78,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       attachments,
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
-      senderID: message.messageMetadata.actorFbId,
+      senderID: parseInt(message.messageMetadata.actorFbId, 10),
       messageID,
     })
 
@@ -101,7 +101,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       type: 'text',
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
-      senderID: message.messageMetadata.actorFbId,
+      senderID: parseInt(message.messageMetadata.actorFbId, 10),
       text: message.body,
       messageID,
     })
