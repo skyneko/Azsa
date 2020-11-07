@@ -1,6 +1,6 @@
 {
   "name": "azsa",
-  "version": "0.0.6b",
+  "version": "0.0.7b",
   "description": "New Unoffical Facebook API",
   "main": "build/index.js",
   "types": "src/types.d.ts",
@@ -13,7 +13,6 @@
     "@types/websocket": "^1.0.1",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
-    "joi": "^17.2.1",
     "mqtt": "^4.2.1",
     "qs": "^6.9.4",
     "request": "^2.88.2",

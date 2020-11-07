@@ -6,15 +6,49 @@ export type IfbDtsg = string
 type IMessageType = 'text' | 'attachment' | 'image' | 'sticker' | 'typing' | 'event'
 
 interface IMessage {
-	type: IMessageType,
 	senderID: number,
 	threadID: number,
-	isGroup: boolean 
+	isGroup: boolean, 
+	messageID: string,
 }
 
 interface ITextMessage extends IMessage {
-	text: string
+	type: 'text',
+	text: string,
 }
+
+interface IStickerMessage extends IMessage {
+	type: 'sticker',
+	pack: string,
+	label: string,
+	frameCount: number,
+	image: {
+		spriteImage: {
+			uri: string,
+		},
+		url: string,
+		width: number,
+		height: number,
+	}
+	stickerID: number,
+}
+
+interface IAttachmentMessage extends IMessage {
+	type: 'attachments',
+	attachments: Array<IAttachmentImage>
+}
+interface IAttachmentImage {
+	type: 'image',
+	id: string,
+	filename: string,
+	filesize: string,
+	width: number,
+	height: number,
+	preview: any,
+	extension: 'jpg' | 'png',
+	renderAsSticker: boolean
+}
+
 
 /** API */
 interface IApiResponse {
@@ -34,17 +68,43 @@ interface IApi {
 	sendText: (text: string, threadID: number) => void
 	sendSticker: (stickerID: number, threadID: number) => void
 	sendImage: (image: string | string[], threadID: number) => void
+	getThreadMessage: (threadID: number, limit?: number, timestamp?: number, fbDtsg?: string) => Promise<IGetThreadMessageResponse>
 }
 
-export type IMsgCallbackEvent = (message: ITextMessage, Api: IApi) => void
+export type IMsgCallbackEvent = (message: ITextMessage|IStickerMessage|IAttachmentMessage, Api: IApi) => void
 
 /** MQTT */
 export interface IMqttConnectOptions {
 	userAgent: string,
 	cookie: string,
-	selfFacebookID: number
+	selfFacebookID: number,
 } 
 type UserConnectOptions = IMqttConnectOptions 
+
+export interface IGraphqlThreadFetcher {
+	name: 'ThreadFetcher',
+	id: number, // threadID
+	message_limit: number,
+	load_messages?: boolean,
+	load_read_receipts?: boolean,
+	load_delivery_receipts?: boolean, 
+	time_before: number, // timestamp
+	is_work_teamwork_not_putting_muted_in_unreads?: boolean
+}
+
+export interface IGraphqlRequestRequirement {
+	userAgent: string,
+	selfFacebookID: number,
+	fbDtsg: string,
+	cookie: string,
+	queries: IGraphqlThreadFetcher
+}
+
+// api/messenger/chatThread/getThreadMessage
+export interface IGetThreadMessageResponse {
+	threadID: number,
+	data: Array<ITextMessage|IStickerMessage|IAttachmentMessage|null>
+}
 
 /** LOG */
 export type ILogType = 'warn' | 'info' | 'error' | 'receive'
