@@ -27,10 +27,10 @@ export default async function onNewMessage(message: any, callback: Function) {
         width: message.attachments[0].mercury.sticker_attachment.width,
         height: message.attachments[0].mercury.sticker_attachment.height,
       },
-      stickerId: parseInt(message.stickerId, 10),
+      stickerID: parseInt(message.stickerId, 10),
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
-      senderId: message.messageMetadata.actorFbId,
+      senderID: message.messageMetadata.actorFbId,
       messageID,
     })
 
@@ -78,7 +78,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       attachments,
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
-      senderId: message.messageMetadata.actorFbId,
+      senderID: message.messageMetadata.actorFbId,
       messageID,
     })
 
@@ -101,7 +101,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       type: 'text',
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
-      senderId: message.messageMetadata.actorFbId,
+      senderID: message.messageMetadata.actorFbId,
       text: message.body,
       messageID,
     })
