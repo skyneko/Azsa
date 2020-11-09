@@ -68,7 +68,7 @@ interface ISendImageApiResponse extends IApiResponse {
 interface IApi {
 	sendText: (text: string, threadID: number) => Promise<ITextMessage|null>
 	sendSticker: (stickerID: string, threadID: number) => void
-	sendImage: (image: string | string[], threadID: number) => void
+	sendImage: (filePath: string, threadID: number) => Promise<any>
 	getThreadMessage: (threadID: number, limit?: number, timestamp?: number, fbDtsg?: string) => Promise<IGetThreadMessageResponse>
 	changeColor: (threadID: number, themeID: string) => Promise<boolean>
 	listTheme: () => Promise<IListTheme>
