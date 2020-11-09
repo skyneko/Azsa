@@ -116,6 +116,21 @@ export interface IThemeColor {
 }
 export type IListTheme = Array<IThemeColor>
 
+// api/messenger/utils/uploadFile
+export interface IUploadFileRequirement {
+	cookie: string,
+	userAgent: string,
+	fbDtsg: string,
+	selfFacebookID: number,
+}
+export interface IUploadImageResponse {
+	imageID: number,
+	filename: string,
+	filetype: string,
+	src: string,
+	facebookID: number,
+}
+
 /** LOG */
 export type ILogType = 'warn' | 'info' | 'error' | 'receive'
 
