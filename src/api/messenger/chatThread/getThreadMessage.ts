@@ -1,5 +1,5 @@
 import { MqttClient } from 'mqtt'
-import { IGetThreadMessageResponse, IMqttConnectOptions, ITextMessage } from '../../../types'
+import { IGetThreadMessageResponse, IMqttConnectOptions, IStickerMessage, ITextMessage } from '../../../types'
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
 import refreshPage from '../../../getFromFacebookPage'
 
@@ -39,7 +39,6 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
   const isGroup = resp.o0.data.message_thread.thread_key.thread_fbid !== undefined
   const message = resp.o0.data.message_thread.messages.nodes.map((node: any) => {
     if (node === undefined) return null
-
     // get type of message
     if (node.message.text !== '' && node.message.text !== undefined) {
       const textMessage: ITextMessage = {
@@ -52,6 +51,29 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
         messageID: node.message_id,
       }
       return textMessage
+    }
+    if (node.sticker !== null) {
+      const stickerMessage: IStickerMessage = {
+        type: 'sticker',
+        threadID,
+        isGroup,
+        senderID: node.message_sender.id,
+        pack: node.sticker.pack.id,
+        label: node.sticker.label,
+        frameCount: node.sticker.frame_count,
+        image: {
+          spriteImage: {
+            uri: ''
+          },
+          url: node.sticker.url,
+          width: node.sticker.width,
+          height: node.sticker.height,
+        },
+        stickerID: node.sticker.id,
+        offline_messageID: node.offline_threading_id,
+        messageID: node.message_id,
+      }
+      return stickerMessage
     }
     
     return null
