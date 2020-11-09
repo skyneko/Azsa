@@ -5,7 +5,8 @@ let lastMessageID = new Array(100).fill('')
 
 export default async function onNewMessage(message: any, callback: Function) {
   let messageID = message.messageMetadata.messageId
-
+  let offline_messageID = message.messageMetadata.offlineThreadingId
+  // console.log(JSON.stringify(message))
   // sticker 
   if (message.stickerId !== undefined && lastMessageID.includes(messageID) === false) {
 
@@ -31,6 +32,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderID: parseInt(message.messageMetadata.actorFbId, 10),
+      offline_messageID,
       messageID,
     })
 
@@ -79,6 +81,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       threadID: parseInt(threadID, 10),
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderID: parseInt(message.messageMetadata.actorFbId, 10),
+      offline_messageID,
       messageID,
     })
 
@@ -103,6 +106,7 @@ export default async function onNewMessage(message: any, callback: Function) {
       isGroup: message.messageMetadata.threadKey.threadFbId !== undefined,
       senderID: parseInt(message.messageMetadata.actorFbId, 10),
       text: message.body,
+      offline_messageID,
       messageID,
     })
 

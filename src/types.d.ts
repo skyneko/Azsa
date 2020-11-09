@@ -10,7 +10,7 @@ interface IMessage {
 	threadID: number,
 	isGroup: boolean, 
 	messageID: string,
-	offline_messageID: number,
+	offline_messageID: string,
 }
 
 interface ITextMessage extends IMessage {

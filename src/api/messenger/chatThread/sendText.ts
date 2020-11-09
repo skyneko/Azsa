@@ -7,7 +7,7 @@ import createGetThreadMessage from './getThreadMessage'
 export = (client: MqttClient, options: IMqttConnectOptions) => function sendText(text: string, threadID: number): Promise<ITextMessage|null> {
   const getThreadMessage = createGetThreadMessage(client, options)
 
-  const messageID: number = getMessageID()
+  const messageID: string = getMessageID()
   const message = {
     'body': text,
     'sender_fbid': options.selfFacebookID,
