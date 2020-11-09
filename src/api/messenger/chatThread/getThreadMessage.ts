@@ -46,7 +46,8 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
         isGroup,
         senderID: node.message_sender.id,
         text: node.message.text,
-        messageID: node.offline_threading_id,
+        offline_messageID: parseInt(node.offline_threading_id, 10),
+        messageID: node.message_id,
       }
       return textMessage
     }

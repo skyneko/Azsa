@@ -10,6 +10,7 @@ interface IMessage {
 	threadID: number,
 	isGroup: boolean, 
 	messageID: string,
+	offline_messageID: number,
 }
 
 interface ITextMessage extends IMessage {
@@ -65,7 +66,7 @@ interface ISendImageApiResponse extends IApiResponse {
 }
 
 interface IApi {
-	sendText: (text: string, threadID: number) => void
+	sendText: (text: string, threadID: number) => Promise<ITextMessage|null>
 	sendSticker: (stickerID: number, threadID: number) => void
 	sendImage: (image: string | string[], threadID: number) => void
 	getThreadMessage: (threadID: number, limit?: number, timestamp?: number, fbDtsg?: string) => Promise<IGetThreadMessageResponse>
