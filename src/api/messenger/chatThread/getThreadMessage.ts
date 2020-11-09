@@ -38,6 +38,8 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
 
   const isGroup = resp.o0.data.message_thread.thread_key.thread_fbid !== undefined
   const message = resp.o0.data.message_thread.messages.nodes.map((node: any) => {
+    if (node === undefined) return null
+
     // get type of message
     if (node.message.text !== '' && node.message.text !== undefined) {
       const textMessage: ITextMessage = {
