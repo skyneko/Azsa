@@ -1,30 +1,8 @@
-import { IGraphqlBatchRequestRequirement } from '../../../types';
+import { IGraphqlRequestRequirement } from '../../../types';
 import qs from 'qs'
 import request from 'request'
 
-function getDataStringQueries(data: IGraphqlBatchRequestRequirement) {
-  let _temp: any = {}
-  if (data.queries.name = 'ThreadFetcher') {
-    _temp = {
-      o0: {
-        doc_id: 3106009512862081,
-        query_params: {
-          id: data.queries.id,
-          message_limit: data.queries.message_limit,
-          load_messages: data.queries.load_messages || true,
-          load_read_receipts: data.queries.load_read_receipts || true,
-          load_delivery_receipts: data.queries.load_delivery_receipts || true,
-          before: data.queries.time_before,
-          is_work_teamwork_not_putting_muted_in_unreads: data.queries.is_work_teamwork_not_putting_muted_in_unreads || false
-        }
-      }
-    }
-  }
-
-  return JSON.stringify(_temp)
-}
-
-export default function requestGraphqlBatch(data: IGraphqlBatchRequestRequirement): Promise<any> {
+export default function requestGraphqlBatch(data: IGraphqlRequestRequirement): Promise<any> {
   return new Promise((resolve, reject) => {
     const headers: request.Headers = {
       Accept: '*/*',
@@ -40,7 +18,7 @@ export default function requestGraphqlBatch(data: IGraphqlBatchRequestRequiremen
     };
 
     const dataString = qs.stringify({
-      batch_name: 'MessengerGraphQLThreadFetcher',
+      doc_id: data.docID,
       __user: data.selfFacebookID,
       __a: '1',
       __dyn: '7AzHJ16U9k9wxxt0BwRyaG5UjBWo2nDwAxu13w8CewSwAyU8EW3K1uwJyEiwp8O2S1DwUx60xU8E1J9EtwMw65xOfwwwto88hwKx-8wgolzUO0-E4a3aUS2G2Caw9m8wnolwBgK7qwpE31wiEjwPyoox22K263ifK6E7e58jwGzE7W7oqBwJK2W5olwUwHwF-4VUfE2Fzqxq2K',
@@ -60,11 +38,13 @@ export default function requestGraphqlBatch(data: IGraphqlBatchRequestRequiremen
       __spin_b: 'trunk',
       __spin_t: '1604368982',
       __jssesw: '1',
-      queries: getDataStringQueries(data)
+      variables: JSON.stringify(data.variables),
+      fb_api_caller_class: data.fbApiCallerClass,
+      fb_api_req_friendly_name: data.fbApiReqFriendlyName,
     })
     
     const requestOptions: request.OptionsWithUri = {
-      uri: 'https://www.facebook.com/api/graphqlbatch/',
+      uri: 'https://www.facebook.com/api/graphql/',
       headers,
       body: dataString,
       method: 'POST'

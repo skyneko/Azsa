@@ -70,6 +70,8 @@ interface IApi {
 	sendSticker: (stickerID: number, threadID: number) => void
 	sendImage: (image: string | string[], threadID: number) => void
 	getThreadMessage: (threadID: number, limit?: number, timestamp?: number, fbDtsg?: string) => Promise<IGetThreadMessageResponse>
+	changeColor: (threadID: number, themeID: string) => Promise<boolean>
+	listTheme: () => Promise<IListTheme>
 }
 
 export type IMsgCallbackEvent = (message: ITextMessage|IStickerMessage|IAttachmentMessage, Api: IApi) => void
@@ -82,15 +84,12 @@ export interface IMqttConnectOptions {
 } 
 type UserConnectOptions = IMqttConnectOptions 
 
-export interface IGraphqlThreadFetcher {
-	name: 'ThreadFetcher',
-	id: number, // threadID
-	message_limit: number,
-	load_messages?: boolean,
-	load_read_receipts?: boolean,
-	load_delivery_receipts?: boolean, 
-	time_before: number, // timestamp
-	is_work_teamwork_not_putting_muted_in_unreads?: boolean
+export interface IGraphqlBatchRequestRequirement {
+	userAgent: string,
+	selfFacebookID: number,
+	fbDtsg: string,
+	cookie: string,
+	queries: any
 }
 
 export interface IGraphqlRequestRequirement {
@@ -98,7 +97,10 @@ export interface IGraphqlRequestRequirement {
 	selfFacebookID: number,
 	fbDtsg: string,
 	cookie: string,
-	queries: IGraphqlThreadFetcher
+	fbApiCallerClass: string,
+	fbApiReqFriendlyName: string,
+	variables: any, 
+	docID: string,
 }
 
 // api/messenger/chatThread/getThreadMessage
@@ -106,6 +108,13 @@ export interface IGetThreadMessageResponse {
 	threadID: number,
 	data: Array<ITextMessage|IStickerMessage|IAttachmentMessage|null>
 }
+
+// api/messenger/chatThread/listTheme
+export interface IThemeColor {
+	name: string,
+	themeID: string,
+}
+export type IListTheme = Array<IThemeColor>
 
 /** LOG */
 export type ILogType = 'warn' | 'info' | 'error' | 'receive'
