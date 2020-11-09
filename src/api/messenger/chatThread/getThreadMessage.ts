@@ -1,5 +1,5 @@
 import { MqttClient } from 'mqtt'
-import { IGetThreadMessageResponse, IMqttConnectOptions, IStickerMessage, ITextMessage } from '../../../types'
+import { IAttachmentImage, IAttachmentMessage, IGetThreadMessageResponse, IMqttConnectOptions, IStickerMessage, ITextMessage } from '../../../types'
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
 import refreshPage from '../../../getFromFacebookPage'
 
@@ -74,6 +74,33 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
         messageID: node.message_id,
       }
       return stickerMessage
+    }
+    if (node.blob_attachments.length > 0) {
+      const attachments: Array<IAttachmentImage> = node.blob_attachments.map((attachment: any) => {
+        const imageMessage: IAttachmentImage = {
+          type: 'image',
+          id: attachment.legacy_attachment_id,
+          filename: attachment.filename,
+          filesize: '0',
+          width: attachment.large_preview.width,
+          height: attachment.large_preview.height,
+          preview: attachment.large_preview.uri,
+          extension: attachment.original_extension,
+          renderAsSticker: attachment.render_as_sticker,
+        }
+        return imageMessage
+      })
+      
+      const attachmentMessage: IAttachmentMessage = {
+        type: "attachments",
+        senderID: node.message_sender.id,
+        threadID,
+        isGroup,
+        offline_messageID: node.offline_threading_id,
+        messageID: node.message_id,
+        attachments,
+      }
+      return attachmentMessage
     }
     
     return null

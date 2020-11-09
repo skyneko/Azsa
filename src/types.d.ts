@@ -68,7 +68,7 @@ interface ISendImageApiResponse extends IApiResponse {
 interface IApi {
 	sendText: (text: string, threadID: number) => Promise<ITextMessage|null>
 	sendSticker: (stickerID: string, threadID: number) => void
-	sendImage: (image: string | string[], threadID: number) => void
+	sendImage: (filePath: string, threadID: number) => Promise<any>
 	getThreadMessage: (threadID: number, limit?: number, timestamp?: number, fbDtsg?: string) => Promise<IGetThreadMessageResponse>
 	changeColor: (threadID: number, themeID: string) => Promise<boolean>
 	listTheme: () => Promise<IListTheme>
@@ -115,6 +115,21 @@ export interface IThemeColor {
 	themeID: string,
 }
 export type IListTheme = Array<IThemeColor>
+
+// api/messenger/utils/uploadFile
+export interface IUploadFileRequirement {
+	cookie: string,
+	userAgent: string,
+	fbDtsg: string,
+	selfFacebookID: number,
+}
+export interface IUploadImageResponse {
+	imageID: number,
+	filename: string,
+	filetype: string,
+	src: string,
+	facebookID: number,
+}
 
 /** LOG */
 export type ILogType = 'warn' | 'info' | 'error' | 'receive'
