@@ -73,6 +73,7 @@ interface IApi {
 	changeColor: (threadID: number, themeID: string) => Promise<boolean>
 	listTheme: () => Promise<IListTheme>
 	changeNickname: (targetUserID: number, nickname: string, threadID: number) => Promise<boolean>
+	changeName: (threadID: number, name: string) => Promise<boolean>
 }
 
 export type IMsgCallbackEvent = (message: ITextMessage|IStickerMessage|IAttachmentMessage, Api: IApi) => void
