@@ -1,12 +1,8 @@
 import { IGraphqlRequestRequirement, IMqttConnectOptions } from '../../../types'
 import { MqttClient } from 'mqtt'
 import requestGraphQL from '../utils/requestGraphql'
-import refreshPage from '../../../getFromFacebookPage'
 
 export = (client: MqttClient, options: IMqttConnectOptions) => async function changeColor(threadID: number, themeID: string): Promise<boolean> {
-  
-  // get fbdtsg
-  const facebookState = await refreshPage(options)
   
   const requestData: IGraphqlRequestRequirement = {
     variables: {
@@ -21,7 +17,7 @@ export = (client: MqttClient, options: IMqttConnectOptions) => async function ch
     userAgent: options.userAgent,
     selfFacebookID: options.selfFacebookID,
     cookie: options.cookie,
-    fbDtsg: facebookState.fbDtsg,
+    fbDtsg: options.fbDtsg,
     fbApiCallerClass: 'RelayModern',
     fbApiReqFriendlyName: 'MWMSUpdateThreadThemeMutation',
     docID: '3253091031381136',

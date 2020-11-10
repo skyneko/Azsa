@@ -3,17 +3,14 @@ import { getMessageID } from './helper'
 import { IAttachmentMessage, IMqttConnectOptions } from '../../../types'
 import createGetThreadMessage from './getThreadMessage'
 import uploadFile from '../utils/uploadFile'
-import refreshPage from '../../../getFromFacebookPage'
 
 export = (client: MqttClient, options: IMqttConnectOptions) => async function sendImage(filePath: string, threadID: number): Promise<IAttachmentMessage|null> {
   const getThreadMessage = createGetThreadMessage(client, options)
 
-  const facebookState = await refreshPage(options)
-
   const image = await uploadFile(filePath, {
     cookie: options.cookie,
     userAgent: options.userAgent,
-    fbDtsg: facebookState.fbDtsg,
+    fbDtsg: options.fbDtsg,
     selfFacebookID: options.selfFacebookID
   })
 

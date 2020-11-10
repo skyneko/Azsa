@@ -1,27 +1,16 @@
 import { MqttClient } from 'mqtt'
 import { IAttachmentImage, IAttachmentMessage, IGetThreadMessageResponse, IMqttConnectOptions, IStickerMessage, ITextMessage } from '../../../types'
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
-import refreshPage from '../../../getFromFacebookPage'
 
-export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(threadID: number, limit?: number, timestamp?: number, fbDtsg?: string): Promise<IGetThreadMessageResponse> {
+export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(threadID: number, limit?: number, timestamp?: number): Promise<IGetThreadMessageResponse> {
   const _timestamp = timestamp || Date.now()
   const _limit = limit || 11
-
-  let _fbDtsg
-
-  if (fbDtsg === undefined) {
-    const facebookState = await refreshPage(options)
-    _fbDtsg = facebookState.fbDtsg
-    
-  } else {
-    _fbDtsg = fbDtsg
-  }
  
   const rawResp = await requestGraphQLBatch({
     userAgent: options.userAgent,
     cookie: options.cookie,
     selfFacebookID: options.selfFacebookID,
-    fbDtsg: _fbDtsg,
+    fbDtsg: options.fbDtsg,
     queries: {
       name: 'ThreadFetcher',
       id: threadID,

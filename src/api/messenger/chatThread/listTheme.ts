@@ -1,12 +1,8 @@
 import { IGraphqlRequestRequirement, IListTheme, IMqttConnectOptions, IThemeColor } from '../../../types'
 import { MqttClient } from 'mqtt'
 import requestGraphQL from '../utils/requestGraphql'
-import refreshPage from '../../../getFromFacebookPage'
 
 export = (client: MqttClient, options: IMqttConnectOptions) => async function listTheme(): Promise<IListTheme> {
-  
-  // get fbdtsg
-  const facebookState = await refreshPage(options)
   
   const requestData: IGraphqlRequestRequirement = {
     variables: {
@@ -15,7 +11,7 @@ export = (client: MqttClient, options: IMqttConnectOptions) => async function li
     userAgent: options.userAgent,
     selfFacebookID: options.selfFacebookID,
     cookie: options.cookie,
-    fbDtsg: facebookState.fbDtsg,
+    fbDtsg: options.fbDtsg,
     fbApiCallerClass: 'RelayModern',
     fbApiReqFriendlyName: 'MWChatThreadThemesQuery',
     docID: '2784074908353379'

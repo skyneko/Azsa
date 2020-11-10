@@ -77,12 +77,14 @@ interface IApi {
 export type IMsgCallbackEvent = (message: ITextMessage|IStickerMessage|IAttachmentMessage, Api: IApi) => void
 
 /** MQTT */
-export interface IMqttConnectOptions {
+export interface IUserConnectOptions {
 	userAgent: string,
 	cookie: string,
 	selfFacebookID: number,
 } 
-type UserConnectOptions = IMqttConnectOptions 
+export interface IMqttConnectOptions extends IUserConnectOptions {
+	fbDtsg: string,
+}
 
 export interface IGraphqlBatchRequestRequirement {
 	userAgent: string,
@@ -149,4 +151,4 @@ export interface IFacebookState {
 
 
 /** MAIN */
-export declare function listen(UserOptions: UserConnectOptions, Callback: IMsgCallbackEvent): void
+export declare function listen(UserOptions: UserConnectOptions, Callback: IMsgCallbackEvent): Promise<void>
