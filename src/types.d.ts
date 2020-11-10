@@ -72,6 +72,7 @@ interface IApi {
 	getThreadMessage: (threadID: number, limit?: number, timestamp?: number, fbDtsg?: string) => Promise<IGetThreadMessageResponse>
 	changeColor: (threadID: number, themeID: string) => Promise<boolean>
 	listTheme: () => Promise<IListTheme>
+	changeNickname: (targetUserID: number, nickname: string, threadID: number) => Promise<boolean>
 }
 
 export type IMsgCallbackEvent = (message: ITextMessage|IStickerMessage|IAttachmentMessage, Api: IApi) => void
