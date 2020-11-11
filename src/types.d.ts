@@ -155,4 +155,4 @@ export interface IFacebookState {
 
 
 /** MAIN */
-export declare function listen(UserOptions: UserConnectOptions, Callback: IMsgCallbackEvent): Promise<void>
+export declare function listen(UserOptions: IUserConnectOptions, Callback: IMsgCallbackEvent): Promise<void>
