@@ -76,6 +76,7 @@ interface IApi {
 	changeName: (threadID: number, name: string) => Promise<boolean>
 	changeThreadImage: (threadID: number, imagePath: string) => Promise<boolean> 
 	changeThreadIcon: (threadID: number, icon: string) => Promise<boolean>
+	getThreadInfo: (threadID: number) => Promise<IThreadInfo>
 }
 
 export type IMsgCallbackEvent = (message: ITextMessage|IStickerMessage|IAttachmentMessage, Api: IApi) => void
@@ -151,6 +152,30 @@ export interface IFacebookState {
 	cookie: string,
 	fbDtsg: string,
 	irisSeqID: string,
+}
+
+export interface IThreadInfo {
+	id: number,
+	name: string,
+	adminList: Array<number>
+	theme: {
+		id: number,
+		label: string,
+		fallbackColor: string
+	},
+	users: Array<{
+		id: number,
+		type: 'User',
+		isAdmin: boolean,
+		name: string,
+		shortName: string,
+		nickname: string,
+		gender: 'MALE' | 'FEMALE',
+		profile_url: string,
+		isViewerFriend: boolean,
+		isMessageBlockedByViewer: boolean,
+		isMessengerUser: boolean,
+	}>
 }
 
 
