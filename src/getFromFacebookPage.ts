@@ -1,9 +1,9 @@
 import { get, Response as IResponse } from 'request'
 import { createHeaders, getFromHTML } from './commons/http'
 import log from './commons/log'
-import { ICreateHeaderOptions, IFacebookState } from './@types'
+import { IMessengerHelper, IFacebookState } from './@types'
 
-export default function getFromFacebookPage (options: ICreateHeaderOptions): Promise<IFacebookState> {
+export default function getFromFacebookPage (options: IMessengerHelper.CreateHeaderOptions): Promise<IFacebookState> {
   return new Promise((resolve) => {
     get({
       uri: 'https://facebook.com/',

@@ -1,11 +1,11 @@
-import { IMsgCallbackEvent, IMqttConnectOptions } from '../@types'
+import { IMsgCallbackEvent, IMqtt } from '../@types'
 
 import onNewMessage from './events/NewMessage'
 import onClientPayload from './events/ClientPayload'
 import createMessageServices from '../api/messenger'
 import { MqttClient } from 'mqtt'
 
-export default function handleEventTopicMessage(event: string, eventData: any, client: MqttClient, options: IMqttConnectOptions, callbackFunc: IMsgCallbackEvent) {
+export default function handleEventTopicMessage(event: string, eventData: any, client: MqttClient, options: IMqtt.ConnectOptions, callbackFunc: IMsgCallbackEvent) {
 
   // @ts-ignore
   const callback = (data: any) => callbackFunc(data, createMessageServices(client, options))

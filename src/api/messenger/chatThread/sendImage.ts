@@ -1,10 +1,10 @@
 import { MqttClient } from 'mqtt'
 import { getMessageID } from './helper'
-import { IAttachmentMessage, IMqttConnectOptions } from '../../../@types'
+import { IMqtt, IMessage } from '../../../@types'
 import createGetThreadMessage from './getThreadMessage'
 import uploadFile from '../utils/uploadFile'
 
-export = (client: MqttClient, options: IMqttConnectOptions) => async function sendImage(filePath: string, threadID: number): Promise<IAttachmentMessage|null> {
+export = (client: MqttClient, options: IMqtt.ConnectOptions) => async function sendImage(filePath: string, threadID: number): Promise<IMessage.AttachmentMessage|null> {
   const getThreadMessage = createGetThreadMessage(client, options)
 
   const image = await uploadFile(filePath, {

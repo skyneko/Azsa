@@ -1,8 +1,8 @@
-import { IGraphqlRequestRequirement } from '../../../@types';
+import { IMessengerUtils } from '../../../@types';
 import qs from 'qs'
 import request from 'request'
 
-export default function requestGraphqlBatch(data: IGraphqlRequestRequirement): Promise<any> {
+export default function requestGraphqlBatch(data: IMessengerUtils.GraphqlRequestRequirement): Promise<any> {
   return new Promise((resolve, reject) => {
     const headers: request.Headers = {
       Accept: '*/*',

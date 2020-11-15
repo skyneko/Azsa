@@ -1,8 +1,8 @@
 import { MqttClient } from 'mqtt'
-import { IAttachmentImage, IAttachmentMessage, IGetThreadMessageResponse, IMqttConnectOptions, IStickerMessage, ITextMessage } from '../../../@types'
+import { IMessage, IMqtt } from '../../../@types'
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
 
-export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(threadID: number, limit?: number, timestamp?: number): Promise<IGetThreadMessageResponse> {
+export = (client: MqttClient, options: IMqtt.ConnectOptions) =>  async function(threadID: number, limit?: number, timestamp?: number): Promise<IMessage.GetThreadMessageResponse> {
   const _timestamp = timestamp || Date.now()
   const _limit = limit || 11
  
@@ -30,7 +30,7 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
     if (node === undefined) return null
     // get type of message
     if (node.message.text !== '' && node.message.text !== undefined) {
-      const textMessage: ITextMessage = {
+      const textMessage: IMessage.TextMessage = {
         type: 'text',
         threadID,
         isGroup,
@@ -42,7 +42,7 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
       return textMessage
     }
     if (node.sticker !== null) {
-      const stickerMessage: IStickerMessage = {
+      const stickerMessage: IMessage.StickerMessage = {
         type: 'sticker',
         threadID,
         isGroup,
@@ -65,8 +65,8 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
       return stickerMessage
     }
     if (node.blob_attachments.length > 0) {
-      const attachments: Array<IAttachmentImage> = node.blob_attachments.map((attachment: any) => {
-        const imageMessage: IAttachmentImage = {
+      const attachments: Array<IMessage.AttachmentImage> = node.blob_attachments.map((attachment: any) => {
+        const imageMessage: IMessage.AttachmentImage = {
           type: 'image',
           id: attachment.legacy_attachment_id,
           filename: attachment.filename,
@@ -80,7 +80,7 @@ export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(t
         return imageMessage
       })
       
-      const attachmentMessage: IAttachmentMessage = {
+      const attachmentMessage: IMessage.AttachmentMessage = {
         type: "attachments",
         senderID: node.message_sender.id,
         threadID,

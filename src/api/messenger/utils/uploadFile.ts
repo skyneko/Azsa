@@ -2,9 +2,9 @@ import request from 'request'
 import qs from 'qs'
 import { existsSync, createReadStream } from 'fs'
 import { getFileType } from './helper'
-import { IUploadFileRequirement, IUploadImageResponse } from '../../../@types';
+import { IMessengerUtils } from '../../../@types';
 
-export default async function uploadFile(filePath: string, data: IUploadFileRequirement): Promise<IUploadImageResponse|null> {
+export default async function uploadFile(filePath: string, data: IMessengerUtils.UploadFileRequirement): Promise<IMessengerUtils.UploadImageResponse|null> {
   const filename: string = filePath.slice(filePath.lastIndexOf('/') + 1, filePath.length)
   const headers: request.Headers = {
     Accept: '*/*',
@@ -70,7 +70,7 @@ export default async function uploadFile(filePath: string, data: IUploadFileRequ
 
       if (res.payload.metadata[0].image_id !== undefined) {
         
-        const imageResponse: IUploadImageResponse = {
+        const imageResponse: IMessengerUtils.UploadImageResponse = {
           imageID: res.payload.metadata[0].image_id,
           filename: res.payload.metadata[0].filename,
           filetype: res.payload.metadata[0].filetype,

@@ -1,10 +1,10 @@
 import request from 'request'
 import { createWriteStream } from 'fs'
 import log from './log'
-import { ICreateHeaderOptions } from '../@types'
+import { IMessengerHelper } from '../@types'
 import { func } from 'joi'
 
-export function createHeaders (opts: ICreateHeaderOptions) {
+export function createHeaders (opts: IMessengerHelper.CreateHeaderOptions) {
   return {
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     Connection: 'keep-alive',
@@ -33,7 +33,7 @@ export function getFromHTML (str: string, startToken: string, endToken: string) 
   return lastHalf.substring(0, end)
 }
 
-export const post = (url: string, headerOptions: ICreateHeaderOptions, dataString: string ) => new Promise((resolve) => {
+export const post = (url: string, headerOptions: IMessengerHelper.CreateHeaderOptions, dataString: string ) => new Promise((resolve) => {
   request({
     headers: createHeaders(headerOptions),
     uri: url,

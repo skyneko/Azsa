@@ -1,10 +1,10 @@
-import { IGraphqlRequestRequirement, IListTheme, IMqttConnectOptions, IThemeColor } from '../../../@types'
+import { IMessengerUtils, IChangeTheme, IMqtt } from '../../../@types'
 import { MqttClient } from 'mqtt'
 import requestGraphQL from '../utils/requestGraphql'
 
-export = (client: MqttClient, options: IMqttConnectOptions) => async function listTheme(): Promise<IListTheme> {
+export = (client: MqttClient, options: IMqtt.ConnectOptions) => async function listTheme(): Promise<IChangeTheme.ListTheme> {
   
-  const requestData: IGraphqlRequestRequirement = {
+  const requestData: IMessengerUtils.GraphqlRequestRequirement = {
     variables: {
       version: 'M4_VERSION0_WITH_GKS',
     },
@@ -20,7 +20,7 @@ export = (client: MqttClient, options: IMqttConnectOptions) => async function li
   const rawResp = await requestGraphQL(requestData)
   const resp = JSON.parse(rawResp)
 
-  const result: IListTheme = resp.data.messenger_thread_themes.map((theme: any) => {
+  const result: IChangeTheme.ListTheme = resp.data.messenger_thread_themes.map((theme: any) => {
     return {
       name: theme.accessibility_label,
       themeID: theme.id, 

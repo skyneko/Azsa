@@ -3,14 +3,14 @@ import websocket from 'websocket-stream'
 import log from '../commons/log'
 import refreshPage from '../getFromFacebookPage'
 import { getGUID } from '../commons/random'
-import { IMqttConnectOptions, IMsgCallbackEvent } from '../@types'
+import { IMqtt, IMsgCallbackEvent } from '../@types'
 import { MqttSettings } from '../const'
 import color from '../commons/console-color'
 import { clientOnConnect, clientOnError, clientOnMessage } from './handleMqttConnect'
 
 const createSessionID = () => Math.floor(Math.random() * 9007199254740991) + 1
 
-export default function connect(options: IMqttConnectOptions, callback: IMsgCallbackEvent) {
+export default function connect(options: IMqtt.ConnectOptions, callback: IMsgCallbackEvent) {
   const sessionID: number = createSessionID()
   const webSocketClientURL: string = `wss://edge-chat.facebook.com:443/chat?region=prn&sid=${sessionID}`
   const mQttOptions: any = {

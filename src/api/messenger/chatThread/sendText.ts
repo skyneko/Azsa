@@ -1,10 +1,10 @@
 import { MqttClient } from 'mqtt'
 import { getMessageID } from './helper'
-import { IMqttConnectOptions, ITextMessage } from '../../../@types'
+import { IMqtt, IMessage } from '../../../@types'
 import createGetThreadMessage from './getThreadMessage'
 
 
-export = (client: MqttClient, options: IMqttConnectOptions) => function sendText(text: string, threadID: number): Promise<ITextMessage|null> {
+export = (client: MqttClient, options: IMqtt.ConnectOptions) => function sendText(text: string, threadID: number): Promise<IMessage.TextMessage|null> {
   const getThreadMessage = createGetThreadMessage(client, options)
 
   const messageID: string = getMessageID()

@@ -1,12 +1,12 @@
-import { IMqttConnectOptions, IMsgCallbackEvent, IUserConnectOptions } from '../@types'
+import { IMqtt, IMsgCallbackEvent } from '../@types'
 import mqttConnect from './mqtt'
 import refreshPage from '../getFromFacebookPage'
 
-export default async function listen (options: IUserConnectOptions,callback: IMsgCallbackEvent): Promise<void> {
+export default async function listen (options: IMqtt.IUserConnectOptions, callback: IMsgCallbackEvent): Promise<void> {
   
   const facebookState = await refreshPage(options)
 
-  const mqttConnectOptions: IMqttConnectOptions = {
+  const mqttConnectOptions: IMqtt.ConnectOptions = {
     ...options, 
     ...{ 
       fbDtsg: facebookState.fbDtsg,

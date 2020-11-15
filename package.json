@@ -1,9 +1,9 @@
 {
   "name": "azsa",
-  "version": "0.0.12-b",
+  "version": "0.1.0",
   "description": "New Unoffical Facebook API",
   "main": "build/index.js",
-  "types": "src/types.d.ts",
+  "types": "src/@types/index.d.ts",
   "prepublish": "tsc",
   "dependencies": {
     "@types/joi": "^14.3.4",

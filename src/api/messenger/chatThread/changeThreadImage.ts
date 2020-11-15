@@ -1,11 +1,11 @@
-import { IMqttConnectOptions } from "../../../@types";
+import { IMqtt } from "../../../@types";
 import { MqttClient } from "mqtt";
 import request from 'request'
 import qs from 'qs'
 import createHeaders from '../utils/createHeaders'
 import uploadFile from '../utils/uploadFile'
 
-export = (client: MqttClient, options: IMqttConnectOptions) => async function changeThreadImage(threadID: number, imagePath: string): Promise<boolean> {
+export = (client: MqttClient, options: IMqtt.ConnectOptions) => async function changeThreadImage(threadID: number, imagePath: string): Promise<boolean> {
   const headers = createHeaders(options)
   const image = await uploadFile(imagePath, options)
 

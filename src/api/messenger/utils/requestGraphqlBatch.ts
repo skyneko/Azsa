@@ -1,8 +1,8 @@
-import { IGraphqlBatchRequestRequirement } from '../../../@types';
+import { IMessengerUtils } from '../../../@types';
 import qs from 'qs'
 import request from 'request'
 
-function getDataStringQueries(data: IGraphqlBatchRequestRequirement) {
+function getDataStringQueries(data: IMessengerUtils.GraphqlBatchRequestRequirement) {
   let _temp: any = {}
   if (data.queries.name = 'ThreadFetcher') {
     _temp = {
@@ -24,7 +24,7 @@ function getDataStringQueries(data: IGraphqlBatchRequestRequirement) {
   return JSON.stringify(_temp)
 }
 
-export default function requestGraphqlBatch(data: IGraphqlBatchRequestRequirement): Promise<any> {
+export default function requestGraphqlBatch(data: IMessengerUtils.GraphqlBatchRequestRequirement): Promise<any> {
   return new Promise((resolve, reject) => {
     const headers: request.Headers = {
       Accept: '*/*',

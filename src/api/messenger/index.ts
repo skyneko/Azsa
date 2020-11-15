@@ -2,9 +2,9 @@
 
 import fs from 'fs'
 import { MqttClient } from 'mqtt'
-import { IMqttConnectOptions } from '../../@types'
+import { IMqtt } from '../../@types'
 
-const createMessageServices = (mqttClient: MqttClient, options: IMqttConnectOptions) => {
+const createMessageServices = (mqttClient: MqttClient, options: IMqtt.ConnectOptions) => {
   let Api = {}
 
   const loadDir = ['chatThread', 'settings']

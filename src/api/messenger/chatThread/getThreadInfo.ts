@@ -1,8 +1,8 @@
-import { IMqttConnectOptions, IThreadInfo } from "../../../@types";
+import { IMqtt, IMessengerThread } from "../../../@types";
 import { MqttClient } from "mqtt";
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
 
-export = (client: MqttClient, options: IMqttConnectOptions) => async function getThreadInfo(threadID: number): Promise<IThreadInfo> {
+export = (client: MqttClient, options: IMqtt.ConnectOptions) => async function getThreadInfo(threadID: number): Promise<IMessengerThread.ThreadInfo> {
   const rawResp = await requestGraphQLBatch({
     userAgent: options.userAgent,
     selfFacebookID: options.selfFacebookID,

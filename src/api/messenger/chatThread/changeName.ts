@@ -1,10 +1,10 @@
-import { IGraphqlRequestRequirement, IMqttConnectOptions } from '../../../@types'
+import { IMessengerUtils, IMqtt } from '../../../@types'
 import { MqttClient } from 'mqtt'
 import requestGraphQL from '../utils/requestGraphql'
 
-export = (client: MqttClient, options: IMqttConnectOptions) => async function changeName(threadID: number, name: string): Promise<boolean> {
+export = (client: MqttClient, options: IMqtt.ConnectOptions) => async function changeName(threadID: number, name: string): Promise<boolean> {
   
-  const requestData: IGraphqlRequestRequirement = {
+  const requestData: IMessengerUtils.GraphqlRequestRequirement = {
     variables: {
       "input": {
         "new_thread_name": name,

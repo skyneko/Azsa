@@ -1,7 +1,7 @@
-import { IMqttConnectOptions } from '../../../@types'
+import { IMqtt } from '../../../@types'
 import { Headers as IHeaders } from 'request'
 
-export default function createHeaders(data: IMqttConnectOptions) {
+export default function createHeaders(data: IMqtt.ConnectOptions) {
   const headers: IHeaders = {
     Accept: '*/*',
     Referer: 'https://www.facebook.com/',
