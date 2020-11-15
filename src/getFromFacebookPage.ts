@@ -1,7 +1,7 @@
 import { get, Response as IResponse } from 'request'
 import { createHeaders, getFromHTML } from './commons/http'
 import log from './commons/log'
-import { ICreateHeaderOptions, IFacebookState } from './types'
+import { ICreateHeaderOptions, IFacebookState } from './@types'
 
 export default function getFromFacebookPage (options: ICreateHeaderOptions): Promise<IFacebookState> {
   return new Promise((resolve) => {

@@ -1,4 +1,4 @@
-import { IMqttConnectOptions, IMsgCallbackEvent, IUserConnectOptions } from '../types'
+import { IMqttConnectOptions, IMsgCallbackEvent, IUserConnectOptions } from '../@types'
 import mqttConnect from './mqtt'
 import refreshPage from '../getFromFacebookPage'
 

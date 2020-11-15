@@ -1,4 +1,4 @@
-import { IGraphqlRequestRequirement, IListTheme, IMqttConnectOptions, IThemeColor } from '../../../types'
+import { IGraphqlRequestRequirement, IListTheme, IMqttConnectOptions, IThemeColor } from '../../../@types'
 import { MqttClient } from 'mqtt'
 import requestGraphQL from '../utils/requestGraphql'
 

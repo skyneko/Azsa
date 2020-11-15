@@ -1,4 +1,4 @@
-import { IMqttConnectOptions } from "../../../types";
+import { IMqttConnectOptions } from "../../../@types";
 import { MqttClient } from "mqtt";
 import request from 'request'
 import qs from 'qs'

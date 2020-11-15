@@ -1,4 +1,4 @@
-import { IMqttConnectOptions } from '../../../types'
+import { IMqttConnectOptions } from '../../../@types'
 import { Headers as IHeaders } from 'request'
 
 export default function createHeaders(data: IMqttConnectOptions) {

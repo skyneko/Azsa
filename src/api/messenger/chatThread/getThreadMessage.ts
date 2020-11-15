@@ -1,5 +1,5 @@
 import { MqttClient } from 'mqtt'
-import { IAttachmentImage, IAttachmentMessage, IGetThreadMessageResponse, IMqttConnectOptions, IStickerMessage, ITextMessage } from '../../../types'
+import { IAttachmentImage, IAttachmentMessage, IGetThreadMessageResponse, IMqttConnectOptions, IStickerMessage, ITextMessage } from '../../../@types'
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
 
 export = (client: MqttClient, options: IMqttConnectOptions) =>  async function(threadID: number, limit?: number, timestamp?: number): Promise<IGetThreadMessageResponse> {

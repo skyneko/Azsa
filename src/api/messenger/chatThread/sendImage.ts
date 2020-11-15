@@ -1,6 +1,6 @@
 import { MqttClient } from 'mqtt'
 import { getMessageID } from './helper'
-import { IAttachmentMessage, IMqttConnectOptions } from '../../../types'
+import { IAttachmentMessage, IMqttConnectOptions } from '../../../@types'
 import createGetThreadMessage from './getThreadMessage'
 import uploadFile from '../utils/uploadFile'
 

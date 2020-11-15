@@ -1,6 +1,6 @@
 import { MqttClient } from 'mqtt'
 import { getMessageID } from './helper'
-import { IMqttConnectOptions, IStickerMessage } from '../../../types'
+import { IMqttConnectOptions, IStickerMessage } from '../../../@types'
 import createGetThreadMessage from './getThreadMessage'
 
 

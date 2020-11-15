@@ -2,7 +2,7 @@ import request from 'request'
 import qs from 'qs'
 import { existsSync, createReadStream } from 'fs'
 import { getFileType } from './helper'
-import { IUploadFileRequirement, IUploadImageResponse } from '../../../types';
+import { IUploadFileRequirement, IUploadImageResponse } from '../../../@types';
 
 export default async function uploadFile(filePath: string, data: IUploadFileRequirement): Promise<IUploadImageResponse|null> {
   const filename: string = filePath.slice(filePath.lastIndexOf('/') + 1, filePath.length)

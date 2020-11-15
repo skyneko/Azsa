@@ -1,4 +1,4 @@
-import { ILogType } from '../types'
+import { ILogType } from '../@types'
 
 import color from './console-color'
 

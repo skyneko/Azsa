@@ -1,4 +1,4 @@
-import { IGraphqlRequestRequirement, IMqttConnectOptions } from '../../../types'
+import { IGraphqlRequestRequirement, IMqttConnectOptions } from '../../../@types'
 import { MqttClient } from 'mqtt'
 import requestGraphQL from '../utils/requestGraphql'
 

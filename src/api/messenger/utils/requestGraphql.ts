@@ -1,4 +1,4 @@
-import { IGraphqlRequestRequirement } from '../../../types';
+import { IGraphqlRequestRequirement } from '../../../@types';
 import qs from 'qs'
 import request from 'request'
 

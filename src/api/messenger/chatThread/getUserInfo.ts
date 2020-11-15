@@ -1,4 +1,4 @@
-import { IMqttConnectOptions, IUserInfo } from "../../../types";
+import { IMqttConnectOptions, IUserInfo } from "../../../@types";
 import { MqttClient } from "mqtt";
 import createGetThreadInfo from './getThreadInfo'
 

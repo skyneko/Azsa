@@ -1,7 +1,7 @@
 import request from 'request'
 import { createWriteStream } from 'fs'
 import log from './log'
-import { ICreateHeaderOptions } from '../types'
+import { ICreateHeaderOptions } from '../@types'
 import { func } from 'joi'
 
 export function createHeaders (opts: ICreateHeaderOptions) {

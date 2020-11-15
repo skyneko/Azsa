@@ -1,6 +1,6 @@
 import { MqttClient as IMqttClient } from 'mqtt'
 import handleEventTopicMessage from './handleEventTopicMessage'
-import { IMsgCallbackEvent, IMqttConnectOptions } from '../types'
+import { IMsgCallbackEvent, IMqttConnectOptions } from '../@types'
 import log from '../commons/log'
 
 export function clientOnConnect(client: IMqttClient, selfFacebookID: number, irisSeqID: string) {

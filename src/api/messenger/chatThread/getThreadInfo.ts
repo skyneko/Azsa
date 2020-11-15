@@ -1,4 +1,4 @@
-import { IMqttConnectOptions, IThreadInfo } from "../../../types";
+import { IMqttConnectOptions, IThreadInfo } from "../../../@types";
 import { MqttClient } from "mqtt";
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
 
