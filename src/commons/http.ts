@@ -2,7 +2,6 @@ import request from 'request'
 import { createWriteStream } from 'fs'
 import log from './log'
 import { IMessengerHelper } from '../@types'
-import { func } from 'joi'
 
 export function createHeaders (opts: IMessengerHelper.CreateHeaderOptions) {
   return {
