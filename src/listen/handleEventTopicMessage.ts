@@ -3,6 +3,7 @@ import { IMsgCallbackEvent, IMqtt } from '../@types'
 import onNewMessage from './events/NewMessage'
 import onClientPayload from './events/ClientPayload'
 import createMessageServices from '../api/messenger'
+import onTyping from './events/Typing'
 import { MqttClient } from 'mqtt'
 
 export default function handleEventTopicMessage(event: string, eventData: any, client: MqttClient, options: IMqtt.ConnectOptions, callbackFunc: IMsgCallbackEvent) {
@@ -27,7 +28,7 @@ export default function handleEventTopicMessage(event: string, eventData: any, c
    * Sự kiện typing (đang gõ) từ người dùng.
    */
   if (event === '/thread_typing') {
-    //
+    onTyping(eventData, callback)
   }
 
   if (event === '/orca_presence') {

@@ -45,8 +45,15 @@ export interface AttachmentImage {
 	renderAsSticker: boolean
 }
 
+export interface ThreadTyping {
+	type: 'typing',
+	threadID: number,
+	isGroup: boolean,
+	state: 0|1,
+	senderID: number,
+}
+
 export interface GetThreadMessageResponse {
 	threadID: number,
 	data: Array<IMessage.TextMessage|IMessage.StickerMessage|IMessage.AttachmentMessage|null>
 }
-

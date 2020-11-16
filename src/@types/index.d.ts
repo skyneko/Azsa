@@ -23,7 +23,7 @@ import * as IMessengerHelper from './messenger/helper'
 export { IMessengerHelper }
 
 export type IfbDtsg = string
-export type IMsgCallbackEvent = (message: IMessage.TextMessage|IMessage.StickerMessage|IMessage.AttachmentMessage, Api: IMessengerApi.ILibApi) => void
+export type IMsgCallbackEvent = (message: IMessage.TextMessage|IMessage.StickerMessage|IMessage.AttachmentMessage|IMessage.ThreadTyping, Api: IMessengerApi.ILibApi) => void
 /** MQTT */
 
 // api/messenger/chatThread/getThreadMessage
