@@ -53,6 +53,37 @@ export interface ThreadTyping {
 	senderID: number,
 }
 
+interface ThreadEvent {
+	type: 'event'
+	actorID: number,
+	threadID: number
+}
+interface ReceiptEvent extends ThreadEvent {
+	subtype: 'read_receipt' | 'delivery_receipt'
+}
+
+interface ChangeThreadNameEvent extends ThreadEvent {
+	subtype: 'change_thread_name',
+	name: string
+}
+
+interface AddedToGroupThreadEvent extends ThreadEvent {
+	subtype: 'added_to_group_thread'
+}
+
+interface ChangeEmojiEvent extends ThreadEvent {
+	subtype: 'change_emoji'
+}
+
+interface ChangeThreadThemeEvent extends ThreadEvent {
+	subtype: 'change_thread_theme',
+	themeColor: string,
+	label: string,
+	gradient: string[] | null,
+}
+
+export type MessageEvent = ReceiptEvent | ChangeThreadNameEvent | AddedToGroupThreadEvent | ChangeEmojiEvent | ChangeThreadThemeEvent 
+
 export interface GetThreadMessageResponse {
 	threadID: number,
 	data: Array<IMessage.TextMessage|IMessage.StickerMessage|IMessage.AttachmentMessage|null>

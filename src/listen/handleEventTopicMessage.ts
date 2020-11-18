@@ -4,6 +4,8 @@ import onNewMessage from './events/NewMessage'
 import onClientPayload from './events/ClientPayload'
 import createMessageServices from '../api/messenger'
 import onTyping from './events/Typing'
+import handleThreadEvents from './events/ThreadEvents'
+
 import { MqttClient } from 'mqtt'
 
 export default function handleEventTopicMessage(event: string, eventData: any, client: MqttClient, options: IMqtt.ConnectOptions, callbackFunc: IMsgCallbackEvent) {
@@ -19,8 +21,14 @@ export default function handleEventTopicMessage(event: string, eventData: any, c
     if (!eventData.deltas) return
 
     eventData.deltas.forEach((message: any) => {
-      if (message.class === 'NewMessage') onNewMessage(message, callback)
-      if (message.class === 'ClientPayload') onClientPayload(message, callback)
+      switch(message.class) {
+        case 'NewMessage': onNewMessage(message, callback) 
+          break
+        case 'ClientPayload': onClientPayload(message, callback)
+          break
+
+        default: handleThreadEvents(message, callback)
+      }
     })
   }
 
