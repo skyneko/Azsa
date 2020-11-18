@@ -1,6 +1,6 @@
 {
   "name": "azsa",
-  "version": "0.1.0",
+  "version": "0.0.13-b",
   "description": "New Unoffical Facebook API",
   "main": "build/index.js",
   "types": "src/@types/index.d.ts",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://banhgaonya@dev.azure.com/banhgaonya/Azsa/_git/Azsa"
+    "url": "https://github.com/skyneko/Azsa"
   },
   "keywords": [
     "facebook",
