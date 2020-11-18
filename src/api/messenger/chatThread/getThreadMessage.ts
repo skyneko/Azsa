@@ -1,3 +1,4 @@
+import log from '../../../commons/log'
 import { MqttClient } from 'mqtt'
 import { IMessage, IMqtt } from '../../../@types'
 import requestGraphQLBatch from '../utils/requestGraphqlBatch'
@@ -15,19 +16,22 @@ export = (client: MqttClient, options: IMqtt.ConnectOptions) =>  async function(
       name: 'ThreadFetcher',
       id: threadID,
       message_limit: _limit,
-      time_before: _timestamp,
+      time_before: _timestamp + 1000,
       load_messages: true,
       load_read_receipts: true,
       load_delivery_receipts: true,
     }
   })
-
+  
   const status = JSON.parse(rawResp.split('\n')[1]) 
   const resp = JSON.parse(rawResp.split('\n')[0])
 
   const isGroup = resp.o0.data.message_thread.thread_key.thread_fbid !== undefined
   const message = resp.o0.data.message_thread.messages.nodes.map((node: any) => {
     if (node === undefined) return null
+    if (node.message === undefined) {
+      log('error', JSON.stringify(node))
+    }
     // get type of message
     if (node.message.text !== '' && node.message.text !== undefined) {
       const textMessage: IMessage.TextMessage = {
