@@ -27,7 +27,7 @@ export default function onChangeThreadName(message: any, callback: Function) {
       
     }
   } else {
-    console.log('asdf', JSON.stringify(message))
+    
     const base = {
       type: 'event',
       text: eventData.adminText,
